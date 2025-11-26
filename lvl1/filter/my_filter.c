@@ -6,7 +6,7 @@
 /*   By: mnieto-m <mnieto-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:11:40 by mnieto-m          #+#    #+#             */
-/*   Updated: 2025/11/05 18:03:28 by mnieto-m         ###   ########.fr       */
+/*   Updated: 2025/11/26 20:45:03 by mnieto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,14 @@ ft_strlen(char *s)
 int main(int argc, char **argv)
 {
 	int i = 0;
-	int r = 0;
+	int bit = 0;
 	char buffer[999];
 	if( argc != 2 || argv[1] == NULL ||  ft_strlen(argv[1]) == 0 )
 		return(1);
-	while(r > 0)
+	while(bit > 0)
 	{
-		r = read(0, &buffer[i],0);
-		i += r;	
+		bit = read(0, &buffer[i],0);
+		i += bit;	
 	}
 	buffer[i] = '\0';
 	filter(buffer, argv[1]);
