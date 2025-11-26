@@ -32,11 +32,12 @@ char	*ft_strdup(char *str)
 }
 char	*get_next_line(int fd)
 {
+	static char buff[BUFFER_SIZE];
 	static int index;//este indice del buff
 	static int bits;
-	static char buff[BUFFER_SIZE];
-	int i = 0;// indice para linea
 	char line[70000];
+	int i = 0;// indice para linea
+	
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	while (1)
