@@ -6,7 +6,7 @@
 /*   By: mnieto-m <mnieto-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:11:40 by mnieto-m          #+#    #+#             */
-/*   Updated: 2025/11/26 22:34:11 by mnieto-m         ###   ########.fr       */
+/*   Updated: 2025/12/20 22:32:42 by mnieto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void *ft_filter(char* buffer, char*  index)
 	while(buffer[i])
 	{
 		j = 0;
-		while( buffer[i + j] != '\0' && buffer[i + j] == index[j])// iterar para encontrar primera concurrencia
+		while( buffer[i + j] != '\0' && buffer[i + j] == index[j])// iterar para encontrar el diccionario entero
 			j++;
 		if(j == len)
 		{
