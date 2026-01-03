@@ -6,7 +6,7 @@
 /*   By: mnieto-m <mnieto-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 15:47:01 by mnieto-m          #+#    #+#             */
-/*   Updated: 2025/12/30 17:02:30 by mnieto-m         ###   ########.fr       */
+/*   Updated: 2026/01/03 18:58:40 by mnieto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,17 @@ int is_valid(int *posisiones, int row , int col)
 	while(i >= 0 && posisiones[i] != -1) //
 	{
 		temp = posisiones[i];
-		if(col == temp || col == temp + (row - i) || col == temp -(row - i))
+
+		// 1️⃣ Misma columna
+		if(col == temp)
+			return(0);
+
+		// 2️⃣ Misma diagonal principal
+		if(col == temp + (row - i))
+			return(0);
+
+		// 3️⃣ Misma diagonal secundaria
+		if(col == temp - (row - i))
 			return(0);
 		i--;
 	}
