@@ -34,7 +34,7 @@ int main(int argc, char **argv)
 {
 	int len = 0;
 	int i = 0;
-	if(argc > 2 || argc < 2)
+	if(argc != 2)
 		return(1);
 	len = ft_strlen(argv[1]);
 	char buffer[len + 1 ] ;

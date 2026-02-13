@@ -6,7 +6,7 @@
 /*   By: mnieto-m <mnieto-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:11:40 by mnieto-m          #+#    #+#             */
-/*   Updated: 2025/12/20 22:32:42 by mnieto-m         ###   ########.fr       */
+/*   Updated: 2026/02/13 16:32:04 by mnieto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,5 @@ int main(int argc, char **argv)
 	}
 	buffer[i] = '\0';
 	ft_filter(buffer, argv[1]);
+	return(0);
 }
