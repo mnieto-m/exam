@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   powerset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mnieto-m <mnieto-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 14:53:19 by mnieto-m          #+#    #+#             */
-/*   Updated: 2026/02/12 20:16:50 by mario            ###   ########.fr       */
+/*   Updated: 2026/02/13 13:12:40 by mnieto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int sum(int setter,int *buffer, int j)
 	return(0);
 }
 
-void recursive(int setter, int *num, int i, int *buffer, int j, int size)
+int recursive(int setter, int *num, int i, int *buffer, int j, int size)
 {
 	if(i == size)
 	{
