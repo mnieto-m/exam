@@ -6,7 +6,7 @@
 /*   By: mnieto-m <mnieto-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 16:09:11 by mnieto-m          #+#    #+#             */
-/*   Updated: 2025/11/27 17:51:41 by mnieto-m         ###   ########.fr       */
+/*   Updated: 2026/02/16 20:52:52 by mnieto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void swap(char *a, char *b)
 	*b = temp;
 }
 
-void sort_str(char *str)
+void sort(char *str, int start)
 {
-	int i = 0 ;
+	int i = start ;
 	int j = 0;
 	
 	while(str[i])
@@ -60,7 +60,7 @@ void sort_str(char *str)
 	}
 }
 void permuted(char *str, int indx, int len )
-{
+{	
 	int i = indx;
 	if(indx == len)
 	{
@@ -70,8 +70,9 @@ void permuted(char *str, int indx, int len )
 	while(i <= len)
 	{
 		swap(&str[indx],&str[i]);
+		sort(str, indx + 1);
 		permuted(str, indx +1, len);
-		swap(&str[indx],&str[i]);
+		sort(str, indx);
 		i++;
 	}
 		
@@ -79,13 +80,13 @@ void permuted(char *str, int indx, int len )
 int main(int argc, char **argv)
 { 
 	int len = 0;
-	if(argc < 1)
+	if(argc < 2 )
 	{
 		write(1,"\n",1);
-		return(0);
+		return(1);
 	}
 	len = ft_strlen(argv[1]);
-	sort_str(argv[1]);
+	sort(argv[1], 0);
 	permuted(argv[1], 0 ,len - 1);
 	return(0);
 }
