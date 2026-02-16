@@ -6,7 +6,7 @@
 /*   By: mnieto-m <mnieto-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 15:47:01 by mnieto-m          #+#    #+#             */
-/*   Updated: 2026/01/03 18:58:40 by mnieto-m         ###   ########.fr       */
+/*   Updated: 2026/02/16 21:42:05 by mnieto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,18 +68,15 @@ void solve(int nq, int  *posisiones, int row)
 	}
 }
 
-int main(int argc , char **argv)
+int main(int argc , char ** argv)
 {
-	int nq = 0;// numero de reinas
-	int *posiones = 0; //posiscion actual 
-	int i = 0;// iterador
-	
+	int nq = 0;
+
 	if(argc != 2)
 		return(1);
-	nq = atoi(argv[1]); // guardo la el numero de reinas en la varibles 
-	posiones = malloc(nq *sizeof(int)); // me creo un array de int en malloc
-	while(i < nq)
-		posiones[i++] = -1; // relleno de -1 el array
-	solve(nq, posiones, 0);// solucion donde paso el numero de reinas, el array de posisiones y 0 rows
-	free(posiones);
+	nq = atoi(argv[1]);
+
+	int posiciones[nq];
+	solve(nq, posiciones , 0);
+	return (0);
 }
