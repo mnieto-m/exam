@@ -25,8 +25,12 @@ char	*ft_strdup(char *str)
 	i = 0;
 	len = ft_strlen(str);
 	dest = (char *)malloc(sizeof(char) * (len + 1));
-	while (str[i++])
+	while (str[i])
+	{
 		dest[i] = str[i];
+		i++;
+	}
+		
 	dest[i] = '\0';
 	return (dest);
 }
