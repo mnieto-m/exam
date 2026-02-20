@@ -1,82 +1,53 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   powerset.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mnieto-m <mnieto-m@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/06 14:53:19 by mnieto-m          #+#    #+#             */
-/*   Updated: 2026/02/13 13:12:40 by mnieto-m         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include <stdlib.h>
 #include <stdio.h>
 
-void print (int *buffer , int j)
+void print(int *buf, int len)
 {
-	int i  = 0;
+	int i = 0;
 
-	while(i < j)
+	while (i < len)
 	{
-		printf("%i",buffer[i]);
-		++i;
-		if(j == i)
-			printf("\n");
-		else
+		printf("%d", buf[i]);
+		if (i < len - 1)
 			printf(" ");
-	}
-}
-
-int sum(int setter,int *buffer, int j)
-{
-	int sum = 0;
-	int i = 0;
-	
-	while (i < j)
-		sum += buffer[i++];
-	if(sum == setter)
-		return(1);
-	return(0);
-}
-
-int recursive(int setter, int *num, int i, int *buffer, int j, int size)
-{
-	if(i == size)
-	{
-		if(sum(setter,buffer,j))
-			print(buffer, j);
-		return;
-	}
-	buffer[j] = num[i];
-	recursive(setter, num, i + 1, buffer,j + 1, size);
-	recursive(setter, num, i + 1, buffer,j, size);
-}
-int powerset(int setter ,int *num, int size)
-{
-	int buff[size];
-	int i = 0;
-	int j = 0;
-	
-	recursive(setter,num, i, buff, j, size);
-	return(0);
-}
-int main(int argc, char **argv)
-{
-	int num[argc - 2];
-	int setter = 0;
-	int i= 0;
-	
-	if (argc <= 2)
-		return(1);
-	setter = atoi(argv[1]);
-	while(argv[(i + 2)])
-	{
-		num[i] = atoi(argv[i + 2]);
+		else
+			printf("\n");
 		i++;
 	}
-	powerset(setter, num ,(argc - 2));
-	return(0);
+}
+
+void solve(int target, int *nums, int size, int i, int *buf, int len, int sum)
+{
+	if (i == size)
+	{
+		if (sum == target)
+			print(buf, len);
+		return ;
+	}
+	// Incluir nums[i]
+	buf[len] = nums[i];
+	solve(target, nums, size, i + 1, buf, len + 1, sum + nums[i]);
+	// No incluir nums[i]
+	solve(target, nums, size, i + 1, buf, len, sum);
+}
+
+int main(int argc, char **argv)
+{
+	if (argc <= 2)
+		return (1);
+
+	int size = argc - 2;
+	int nums[size];
+	int buf[size];
+	int i = 0;
+
+	while (i < size)
+	{
+		nums[i] = atoi(argv[i + 2]);
+		i++;
+	}
+	solve(atoi(argv[1]), nums, size, 0, buf, 0, 0);
+	return (0);
 }
 
 

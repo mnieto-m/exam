@@ -1,47 +1,63 @@
-#include "stdio.h"
+#include <unistd.h>
+
+void ft_puts(char *str)
+{
+	int i = 0;
+	while (str[i])
+		write(1, &str[i++], 1);
+	write(1, "\n", 1);
+}
 
 int ft_strlen(char *str)
 {
-	int i= 0;
-
-	if(!str)
-		return(0);
-	while(str[i])
-		i++;
-	return(i);
-}
-
-void recursive(char *buffer, int len)
-{
-
-}
-int rip(char *buffer, int len)
-{
-	int left = 0;
-	int right = 0;
 	int i = 0;
-	while(buffer[i])
-	{
-		if(buffer[i] = '(')
-			left++;
-		if(buffer[i] = ')')
-			right ++;
-		i ++;
-	}
-	//recursive();
+
+	if (!str)
+		return (0);
+	while (str[i])
+		i++;
+	return (i);
 }
+
+int is_valid(char *buff)
+{
+
+}
+
+int rip(char *str, int indx, char *buff, int len, int rem)
+{
+	if (indx == len)
+	{
+		buff[len] = '\0';
+		if (!rem && is_valid(buff))
+			ft_puts(buff);
+		return(1);
+	}
+	if ((str[indx] == '(' || str[indx] == ')') && rem > 0)
+	{
+		buff[indx] = ' ';
+		rip(str, indx + 1, buff, len, rem - 1);
+	}
+	buff[indx] = str[indx];
+	rip(str, indx + 1, buff, len, rem);
+	return(0);
+}
+
+int count_rem(char *str)
+{
+
+}
+
 int main(int argc, char **argv)
 {
-	int len = 0;
-	int i = 0;
-	if(argc != 2)
-		return(1);
+	int len;
+	int rem;
+	char buffer[1024];
+
+	if (argc != 2)
+		return (1);
 	len = ft_strlen(argv[1]);
-	char buffer[len + 1 ] ;
-	
-	while(buffer[i++])
-		buffer[i] = argv[1][i];
-	buffer[i] = '\0';
-	rip(buffer, len);
-	return(0);
+	rem = count_rem(argv[1]);
+	rip(argv[1], 0, buffer, len, rem);
+	return (0);
 }

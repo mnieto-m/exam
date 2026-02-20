@@ -6,7 +6,7 @@
 /*   By: mnieto-m <mnieto-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 16:09:11 by mnieto-m          #+#    #+#             */
-/*   Updated: 2026/02/16 20:52:52 by mnieto-m         ###   ########.fr       */
+/*   Updated: 2026/02/19 19:30:51 by mnieto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,11 @@ void permuted(char *str, int indx, int len )
 		print_str(str);
 		return		;
 	}
-	while(i <= len)
+	while(i <len)
 	{
 		swap(&str[indx],&str[i]);
 		sort(str, indx + 1);
-		permuted(str, indx +1, len);
+		permuted(str, indx + 1, len);
 		sort(str, indx);
 		i++;
 	}
@@ -87,6 +87,6 @@ int main(int argc, char **argv)
 	}
 	len = ft_strlen(argv[1]);
 	sort(argv[1], 0);
-	permuted(argv[1], 0 ,len - 1);
+	permuted(argv[1], 0 ,len);
 	return(0);
 }
