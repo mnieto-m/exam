@@ -22,9 +22,9 @@ int ft_strlen(char *str)
 int is_valid(char *str)
 {
 	int open = 0;
-	int rem = 0;
+	int diff = 0;
 	int i = 0;
-	
+
 	while (str[i])
 	{
 		if (str[i] == '(')
@@ -34,42 +34,41 @@ int is_valid(char *str)
 			if (open > 0)
 				open--;
 			else
-				rem++;
+				diff++;
 		}
 		i++;
 	}
-	return (rem + open);
+	return (diff + open);
 }
 
-int rip(char *str, int indx, char *buff, int len, int rem)
+void rip(char *str, int indx, char *buff, int len, int diff)
 {
 	if (indx == len)
 	{
 		buff[len] = '\0';
-		if (!rem && !is_valid(buff))
+		if (!diff && !is_valid(buff))
 			ft_puts(buff);
-		return(1);
+		return ;
 	}
-	if ((str[indx] == '(' || str[indx] == ')') && rem > 0)
+	if ((str[indx] == '(' || str[indx] == ')') && diff > 0)
 	{
 		buff[indx] = ' ';
-		rip(str, indx + 1, buff, len, rem - 1);
+		rip(str, indx + 1, buff, len, diff - 1);
 	}
 	buff[indx] = str[indx];
-	rip(str, indx + 1, buff, len, rem);
-	return(0);
+	rip(str, indx + 1, buff, len, diff);
 }
 
 int main(int argc, char **argv)
 {
 	int len;
-	int rem;
+	int diff;
 	char buffer[1024];
 
 	if (argc != 2)
 		return (1);
 	len = ft_strlen(argv[1]);
-	rem = is_valid(argv[1]);
-	rip(argv[1], 0, buffer, len, rem);
+	diff = is_valid(argv[1]);
+	rip(argv[1], 0, buffer, len, diff);
 	return (0);
 }
