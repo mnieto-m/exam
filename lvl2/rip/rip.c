@@ -19,9 +19,26 @@ int ft_strlen(char *str)
 	return (i);
 }
 
-int is_valid(char *buff)
+int is_valid(char *str)
 {
-
+	int open = 0;
+	int rem = 0;
+	int i = 0;
+	
+	while (str[i])
+	{
+		if (str[i] == '(')
+			open++;
+		else if (str[i] == ')')
+		{
+			if (open > 0)
+				open--;
+			else
+				rem++;
+		}
+		i++;
+	}
+	return (rem + open);
 }
 
 int rip(char *str, int indx, char *buff, int len, int rem)
@@ -29,7 +46,7 @@ int rip(char *str, int indx, char *buff, int len, int rem)
 	if (indx == len)
 	{
 		buff[len] = '\0';
-		if (!rem && is_valid(buff))
+		if (!rem && !is_valid(buff))
 			ft_puts(buff);
 		return(1);
 	}
@@ -43,11 +60,6 @@ int rip(char *str, int indx, char *buff, int len, int rem)
 	return(0);
 }
 
-int count_rem(char *str)
-{
-
-}
-
 int main(int argc, char **argv)
 {
 	int len;
@@ -57,7 +69,7 @@ int main(int argc, char **argv)
 	if (argc != 2)
 		return (1);
 	len = ft_strlen(argv[1]);
-	rem = count_rem(argv[1]);
+	rem = is_valid(argv[1]);
 	rip(argv[1], 0, buffer, len, rem);
 	return (0);
 }

@@ -1,14 +1,14 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void print(int *buf, int len)
+void print(int *buf, int j)
 {
 	int i = 0;
 
-	while (i < len)
+	while (i < j)
 	{
 		printf("%d", buf[i]);
-		if (i < len - 1)
+		if (i < j - 1)
 			printf(" ");
 		else
 			printf("\n");
@@ -16,19 +16,19 @@ void print(int *buf, int len)
 	}
 }
 
-void solve(int target, int *nums, int size, int i, int *buf, int len, int sum)
+void solve(int target, int *nums, int size, int i, int *buf, int j, int sum)
 {
 	if (i == size)
 	{
 		if (sum == target)
-			print(buf, len);
+			print(buf, j);
 		return ;
 	}
 	// Incluir nums[i]
-	buf[len] = nums[i];
-	solve(target, nums, size, i + 1, buf, len + 1, sum + nums[i]);
+	buf[j] = nums[i];
+	solve(target, nums, size, i + 1, buf, j + 1, sum + nums[i]);
 	// No incluir nums[i]
-	solve(target, nums, size, i + 1, buf, len, sum);
+	solve(target, nums, size, i + 1, buf, j, sum);
 }
 
 int main(int argc, char **argv)
@@ -37,8 +37,8 @@ int main(int argc, char **argv)
 		return (1);
 
 	int size = argc - 2;
-	int nums[size];
-	int buf[size];
+	int nums[size + 1];
+	int buf[size + 1];
 	int i = 0;
 
 	while (i < size)

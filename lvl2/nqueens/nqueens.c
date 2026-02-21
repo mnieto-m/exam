@@ -6,7 +6,7 @@
 /*   By: mnieto-m <mnieto-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 15:47:01 by mnieto-m          #+#    #+#             */
-/*   Updated: 2026/02/16 21:42:05 by mnieto-m         ###   ########.fr       */
+/*   Updated: 2026/02/21 22:08:44 by mnieto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,46 +26,39 @@ void print_posisiones(int nq, int *posisiones)
 	}
 	printf("\n");
 }
-int is_valid(int *posisiones, int row , int col)
+int is_valid(int *posisiones, int row, int col)
 {
-	int i = row - 1; // daremos el valor de una columna menor 
-	int temp ; // declaramos un variable int temporal para poder retener y comparar despues 
-	while(i >= 0 && posisiones[i] != -1) //
+	int i;
+
+	i = 0;
+	while (i < row)
 	{
-		temp = posisiones[i];
-
-		// 1️⃣ Misma columna
-		if(col == temp)
-			return(0);
-
-		// 2️⃣ Misma diagonal principal
-		if(col == temp + (row - i))
-			return(0);
-
-		// 3️⃣ Misma diagonal secundaria
-		if(col == temp - (row - i))
-			return(0);
-		i--;
+		if (posisiones[i] == col)
+			return (0);
+		if (posisiones[i] == col + (row - i))
+			return (0);
+		if (posisiones[i] == col - (row - i))
+			return (0);
+		i++;
 	}
-	return(1);
+	return (1);
 }
 
-void solve(int nq, int  *posisiones, int row)
+void solve(int nq, int *posisiones, int row, int col)
 {
-	int col = 0; // declaramos 
-	while(col < nq) // bucle comparando columnas y numero de reinas 
+	if (col == nq)
 	{
-		if(is_valid(posisiones,row , col))
-		{
-			posisiones[row] = col;
-			if(row + 1 == nq)
-				print_posisiones(nq,posisiones);
-			else
-				solve(nq,posisiones, row + 1);
-		}
-		posisiones[row] = -1;
-		col++;
+		if (row == nq)
+			print_posisiones(nq, posisiones);
+		return ;
 	}
+	if (is_valid(posisiones, row, col))
+	{
+		posisiones[row] = col;
+		solve(nq, posisiones, row + 1, 0);
+		posisiones[row] = -1;
+	}
+	solve(nq, posisiones, row, col + 1);
 }
 
 int main(int argc , char ** argv)
@@ -77,6 +70,6 @@ int main(int argc , char ** argv)
 	nq = atoi(argv[1]);
 
 	int posiciones[nq];
-	solve(nq, posiciones , 0);
+	solve(nq, posiciones, 0, 0);
 	return (0);
 }
