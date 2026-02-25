@@ -33,12 +33,14 @@ void solve(int target, int *nums, int size, int i, int *buf, int j, int sum)
 
 int main(int argc, char **argv)
 {
-	if (argc <= 2)
-		return (1);
-
+	if(argc <= 2 || atoi(argv[1]) == 0)
+	{
+		printf("\n");
+		return(1);
+	}
 	int size = argc - 2;
-	int nums[size + 1];
-	int buf[size + 1];
+	int nums[size ];
+	int buf[size ];
 	int i = 0;
 
 	while (i < size)
