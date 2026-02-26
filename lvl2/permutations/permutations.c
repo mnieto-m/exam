@@ -6,7 +6,7 @@
 /*   By: mnieto-m <mnieto-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 16:09:11 by mnieto-m          #+#    #+#             */
-/*   Updated: 2026/02/19 19:30:51 by mnieto-m         ###   ########.fr       */
+/*   Updated: 2026/02/23 22:19:59 by mnieto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void permuted(char *str, int indx, int len )
 int main(int argc, char **argv)
 { 
 	int len = 0;
-	if(argc < 2 )
+	if(argc != 2 )
 	{
 		write(1,"\n",1);
 		return(1);
