@@ -6,7 +6,7 @@
 /*   By: mnieto-m <mnieto-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 15:47:01 by mnieto-m          #+#    #+#             */
-/*   Updated: 2026/02/21 22:08:44 by mnieto-m         ###   ########.fr       */
+/*   Updated: 2026/02/26 01:04:48 by mnieto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,32 +33,40 @@ int is_valid(int *posisiones, int row, int col)
 	i = 0;
 	while (i < row)
 	{
-		if (posisiones[i] == col)
-			return (0);
-		if (posisiones[i] == col + (row - i))
-			return (0);
-		if (posisiones[i] == col - (row - i))
-			return (0);
+		// 1️⃣ Misma columna
+		if(col == posisiones[i])
+			return(0);
+
+		// 2️⃣ Misma diagonal principal
+		if(col == posisiones[i] + (row - i))
+			return(0);
+
+		// 3️⃣ Misma diagonal secundaria
+		if(col == posisiones[i] - (row - i))
+			return(0);
 		i++;
 	}
+	return 1;
 	return (1);
 }
 
 void solve(int nq, int *posisiones, int row, int col)
 {
-	if (col == nq)
-	{
-		if (row == nq)
-			print_posisiones(nq, posisiones);
-		return ;
-	}
-	if (is_valid(posisiones, row, col))
-	{
-		posisiones[row] = col;
-		solve(nq, posisiones, row + 1, 0);
-		posisiones[row] = -1;
-	}
-	solve(nq, posisiones, row, col + 1);
+    if (col == nq)
+    {
+        print(nq, posisiones);
+        return;
+    }
+    row = 0;
+    while (row < nq)
+    {
+        if (is_valid(posisiones, col, row))
+        {
+            posisiones[col] = row;
+            solve(nq, posisiones, col + 1, 0);
+        }
+        row++;
+    }
 }
 
 int main(int argc , char ** argv)
