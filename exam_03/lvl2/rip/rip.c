@@ -63,12 +63,12 @@ int main(int argc, char **argv)
 {
 	int len;
 	int diff;
-	char buffer[1024];
-
+	
 	if (argc != 2)
-		return (1);
+	return (1);
 	len = ft_strlen(argv[1]);
 	diff = is_valid(argv[1]);
+	char buffer[len + 1];
 	rip(argv[1], 0, buffer, len, diff);
 	return (0);
 }
