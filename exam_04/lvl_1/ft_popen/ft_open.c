@@ -23,7 +23,7 @@ int ft_open(const char *file, char *const argv[], char type)
 		close(fd[1]);
 		return(fd[0]);
 	}
-	if(type = 'w')
+	if(type == 'w')
 	{
 		if(fork() == 0)
 		{
